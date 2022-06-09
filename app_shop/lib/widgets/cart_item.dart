@@ -1,4 +1,5 @@
 import 'package:app_shop/providers/cart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,48 @@ class CartItem extends StatelessWidget {
         ),
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: const Text("Are you sure?"),
+            content: const Text(
+              "Do you want  to remove the item from the cart?",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text(
+                  "No",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text(
+                  "Yes",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ),
+        );
+      },
       onDismissed: (direction) {
         Provider.of<Cart>(context, listen: false).removeItem(productId);
       },
@@ -68,7 +111,7 @@ class CartItem extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "Total: \\${(price * quantity)}",
+              "Total: \$${(price * quantity)}",
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
