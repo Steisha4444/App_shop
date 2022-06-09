@@ -1,4 +1,4 @@
-import 'package:app_shop/models/product.dart';
+import 'package:app_shop/providers/product.dart';
 import 'package:flutter/material.dart';
 
 class Products with ChangeNotifier {
@@ -40,8 +40,16 @@ class Products with ChangeNotifier {
           "https://images.squarespace-cdn.com/content/v1/5811b29bb8a79b740e329a5c/1627028748602-HOJGAMH8X8KK2VDP6ONC/matte-coffee-bag-mockup-template.png?format=2500w",
     ),
   ];
+
   List<Product> get products {
+    // if (_showFavoritesOnly) {
+    //   return _products.where((element) => element.isFavorite).toList();
+    // }
     return [..._products];
+  }
+
+  List<Product> get favoriteItems {
+    return _products.where((element) => element.isFavorite).toList();
   }
 
   Product findById(String id) {
