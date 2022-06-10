@@ -29,7 +29,7 @@ class ProductDetailScreen extends StatelessWidget {
                   fit: BoxFit.fitHeight,
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 '\$${loadedData.price}',
                 style: const TextStyle(
@@ -37,9 +37,9 @@ class ProductDetailScreen extends StatelessWidget {
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 width: double.infinity,
                 child: Text(
                   loadedData.description,
